@@ -1,11 +1,10 @@
 package com.study.service.test;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.study.service.common.Body;
-import com.study.service.common.ItemResponse;
-import com.study.service.common.Response;
+import com.study.service.jaxb.pojo.GoodsResponseXml;
 
 /**
  * <pre>
@@ -29,20 +28,8 @@ public class TestResource {
 	}
 	
 	@RequestMapping(value = "xml", produces={"application/xml; charset=UTF-8"})
-	public Response xml(){
-		
-	    Response res = new Response();
-	    res.setService("WMS_SALE_ORDER_WAVE_PUSH_SERVICE");
-	    res.setLang("zh-CN");
-	    res.setHead("OK");
-	    ItemResponse ir = new ItemResponse();
-	    ir.setCompanyCode("qewrtgy");
-	    ir.setRemark("234");
-	    ir.setResult("OK");
-	    ir.setTotalSize(100);
-	    Body body = new Body();
-	    body.setItemResponse(ir);
-	    res.setBody(body);
-		return res;
+	public GoodsResponseXml xml(@RequestBody GoodsResponseXml xml)
+	{
+		return xml;
 	}
 }
