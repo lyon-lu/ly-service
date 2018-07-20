@@ -2,7 +2,7 @@
  * Copyright (C) Skywares Information Technology, LTD. 
  * All Rights Reserved.
  *
- * GoodsResonseBody.java created on Jul 12, 2018 9:28:38 AM by Lyon Lu 
+ * ItemRequestXml.java created on Jul 17, 2018 9:03:58 AM by Lyon Lu 
  */
 package com.study.service.jaxb.pojo;
 
@@ -15,39 +15,39 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Description:
  * 
  * @author Lyon Lu
- * @date Jul 12, 2018 9:28:38 AM
+ * @date Jul 17, 2018 9:03:58 AM
  *
  * </pre>
  */
-@XmlRootElement(name="Response")
+@XmlRootElement(name="Request")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GoodsResponseXml extends BaseResponse
+public class ItemRequestXml extends BaseRequest
 {
     /**
     * @fields serialVersionUID : TODO
     */
-    private static final long serialVersionUID = 6437379031801938017L;
+    private static final long serialVersionUID = -4360521878582559588L;
     
     private Body Body;
     
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class Body
     {
-        private GoodsResponse GoodsResponse;
+        private ItemRequest ItemRequest;
 
-        public GoodsResponse getGoodsResponse()
+        public ItemRequest getItemRequest()
         {
-            return GoodsResponse;
+            return ItemRequest;
         }
 
-        public void setGoodsResponse(GoodsResponse goodsResponse)
+        public void setItemRequest(ItemRequest itemRequest)
         {
-            GoodsResponse = goodsResponse;
+            ItemRequest = itemRequest;
         }
     }
     
     @XmlAccessorType(XmlAccessType.FIELD)
-    public static class GoodsResponse
+    public static class ItemRequest
     {
         private String code;
 
@@ -61,7 +61,7 @@ public class GoodsResponseXml extends BaseResponse
             this.code = code;
         }
     }
-    
+
     public Body getBody()
     {
         return Body;
