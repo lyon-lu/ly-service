@@ -20,10 +20,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.study.server.common.AbstractResource;
 import com.study.server.jaxb.pojo.BaseRequest.Head;
-import com.study.server.jaxb.pojo.GoodsResponseXml;
-import com.study.server.jaxb.pojo.GoodsResponseXml.GoodsResponse;
 import com.study.server.jaxb.pojo.ItemRequestXml;
 import com.study.server.jaxb.pojo.ItemRequestXml.ItemRequest;
+import com.study.server.jaxb.pojo.ItemResponseXml;
+import com.study.server.jaxb.pojo.ItemResponseXml.Body;
+import com.study.server.jaxb.pojo.ItemResponseXml.ItemResponse;
 import com.study.server.utils.JaxbUtil;
 
 /**
@@ -57,18 +58,18 @@ public class TestResource extends AbstractResource
 	}
 	
 	@RequestMapping(value = "xml", produces={"application/xml; charset=UTF-8"})
-	public GoodsResponseXml xml(@RequestBody ItemRequestXml xml)
+	public ItemResponseXml xml(@RequestBody ItemRequestXml xml)
 	{
 	    System.out.println(xml);
 	    ItemRequest itemRequest = xml.getBody().getItemRequest();
 	    
-	    GoodsResponse gr = new GoodsResponse();
+	    ItemResponse gr = new ItemResponse();
 	    gr.setCode(itemRequest.getCode());
 	    
-	    com.study.server.jaxb.pojo.GoodsResponseXml.Body body = new com.study.server.jaxb.pojo.GoodsResponseXml.Body();
-	    body.setGoodsResponse(gr);
+	    Body body = new Body();
+	    body.setItemResponse(gr);
 	    
-	    GoodsResponseXml grx = new GoodsResponseXml();
+	    ItemResponseXml grx = new ItemResponseXml();
 	    grx.setService(xml.getService());
 	    grx.setLang(xml.getLang());
 	    grx.setHead("OK");

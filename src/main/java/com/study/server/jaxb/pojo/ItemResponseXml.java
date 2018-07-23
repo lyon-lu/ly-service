@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name="Response")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GoodsResponseXml extends BaseResponse
+public class ItemResponseXml extends BaseResponse
 {
     /**
     * @fields serialVersionUID : TODO
@@ -33,21 +33,21 @@ public class GoodsResponseXml extends BaseResponse
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class Body
     {
-        private GoodsResponse GoodsResponse;
+        private ItemResponse ItemResponse;
 
-        public GoodsResponse getGoodsResponse()
+        public ItemResponse getItemResponse()
         {
-            return GoodsResponse;
+            return ItemResponse;
         }
 
-        public void setGoodsResponse(GoodsResponse goodsResponse)
+        public void setItemResponse(ItemResponse itemResponse)
         {
-            GoodsResponse = goodsResponse;
+            ItemResponse = itemResponse;
         }
     }
     
     @XmlAccessorType(XmlAccessType.FIELD)
-    public static class GoodsResponse
+    public static class ItemResponse
     {
         private String code;
 

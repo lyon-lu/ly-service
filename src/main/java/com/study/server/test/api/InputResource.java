@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.study.server.common.AbstractResource;
 import com.study.server.jaxb.pojo.ItemRequestXml;
-import com.study.server.utils.JaxbUtil;
+import com.study.server.jaxb.pojo.ItemRequestXml.ItemRequest;
+import com.study.server.jaxb.pojo.ItemResponseXml;
+import com.study.server.jaxb.pojo.ItemResponseXml.Body;
+import com.study.server.jaxb.pojo.ItemResponseXml.ItemResponse;
+import com.study.server.utils.JacksonUtil;
 
 /**
  * <pre>
@@ -27,10 +31,23 @@ import com.study.server.utils.JaxbUtil;
 public class InputResource extends AbstractResource 
 {
     @RequestMapping(value = "input")
-    public ItemRequestXml input(@RequestBody ItemRequestXml xml)
+    public ItemResponseXml input(@RequestBody ItemRequestXml xml)
     {
-        String convertToXml = JaxbUtil.convertToXml(xml);
-        System.out.println(convertToXml);
-        return xml;
+        
+        ItemRequest itemRequest = xml.getBody().getItemRequest();
+        
+        ItemResponse gr = new ItemResponse();
+        gr.setCode(itemRequest.getCode());
+        
+        Body body = new Body();
+        body.setItemResponse(gr);
+        
+        ItemResponseXml grx = new ItemResponseXml();
+        grx.setService(xml.getService());
+        grx.setLang(xml.getLang());
+        grx.setHead("OK");
+        grx.setBody(body);
+        
+        return grx;
     }
 }
