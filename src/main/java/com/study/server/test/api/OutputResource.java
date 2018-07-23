@@ -56,4 +56,10 @@ public class OutputResource
         
         return output;
     }
+    
+    @RequestMapping(value = "success")
+    public String success()
+    {
+        return "success";
+    }
 }
