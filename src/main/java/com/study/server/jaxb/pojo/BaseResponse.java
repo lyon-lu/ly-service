@@ -4,7 +4,7 @@
  *
  * BaseResponse.java created on Jul 17, 2018 2:25:45 PM by Lyon Lu 
  */
-package com.study.service.jaxb.pojo;
+package com.study.server.jaxb.pojo;
 
 import java.io.Serializable;
 

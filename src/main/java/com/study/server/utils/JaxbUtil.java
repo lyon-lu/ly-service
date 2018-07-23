@@ -4,7 +4,7 @@
  *
  * JaxbUtil.java created on Jul 17, 2018 3:17:05 PM by Lyon Lu 
  */
-package com.study.service.utils;
+package com.study.server.utils;
 
 import java.io.StringReader;
 import java.io.StringWriter;

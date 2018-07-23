@@ -4,7 +4,7 @@
  *
  * ItemRequestXml.java created on Jul 17, 2018 9:03:58 AM by Lyon Lu 
  */
-package com.study.service.jaxb.pojo;
+package com.study.server.jaxb.pojo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

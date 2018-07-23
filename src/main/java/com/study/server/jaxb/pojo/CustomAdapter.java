@@ -4,7 +4,7 @@
  *
  * CustomAdapter.java created on Jul 17, 2018 1:57:21 PM by Lyon Lu 
  */
-package com.study.service.jaxb.pojo;
+package com.study.server.jaxb.pojo;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 

@@ -4,7 +4,7 @@
  *
  * CryptoUtil.java created on Jul 17, 2018 4:03:08 PM by Lyon Lu 
  */
-package com.study.service.utils;
+package com.study.server.utils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

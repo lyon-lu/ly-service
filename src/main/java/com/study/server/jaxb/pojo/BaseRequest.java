@@ -4,7 +4,7 @@
  *
  * BaseRequest.java created on Jul 17, 2018 8:57:25 AM by Lyon Lu 
  */
-package com.study.service.jaxb.pojo;
+package com.study.server.jaxb.pojo;
 
 import java.io.Serializable;
 

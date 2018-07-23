@@ -4,7 +4,7 @@
  *
  * ItemRequestXml.java created on Jul 17, 2018 9:03:58 AM by Lyon Lu 
  */
-package com.study.service.test;
+package com.study.server.test.api;
 
 import java.io.IOException;
 
@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.study.service.common.AbstractResource;
-import com.study.service.jaxb.pojo.BaseRequest.Head;
-import com.study.service.jaxb.pojo.GoodsResponseXml;
-import com.study.service.jaxb.pojo.GoodsResponseXml.GoodsResponse;
-import com.study.service.jaxb.pojo.ItemRequestXml;
-import com.study.service.jaxb.pojo.ItemRequestXml.ItemRequest;
-import com.study.service.utils.JaxbUtil;
+import com.study.server.common.AbstractResource;
+import com.study.server.jaxb.pojo.BaseRequest.Head;
+import com.study.server.jaxb.pojo.GoodsResponseXml;
+import com.study.server.jaxb.pojo.GoodsResponseXml.GoodsResponse;
+import com.study.server.jaxb.pojo.ItemRequestXml;
+import com.study.server.jaxb.pojo.ItemRequestXml.ItemRequest;
+import com.study.server.utils.JaxbUtil;
 
 /**
  * <pre>
@@ -65,7 +65,7 @@ public class TestResource extends AbstractResource
 	    GoodsResponse gr = new GoodsResponse();
 	    gr.setCode(itemRequest.getCode());
 	    
-	    com.study.service.jaxb.pojo.GoodsResponseXml.Body body = new com.study.service.jaxb.pojo.GoodsResponseXml.Body();
+	    com.study.server.jaxb.pojo.GoodsResponseXml.Body body = new com.study.server.jaxb.pojo.GoodsResponseXml.Body();
 	    body.setGoodsResponse(gr);
 	    
 	    GoodsResponseXml grx = new GoodsResponseXml();

@@ -4,7 +4,7 @@
  *
  * GoodsResonseBody.java created on Jul 12, 2018 9:28:38 AM by Lyon Lu 
  */
-package com.study.service.jaxb.pojo;
+package com.study.server.jaxb.pojo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

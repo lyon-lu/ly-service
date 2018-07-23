@@ -4,7 +4,7 @@
  *
  * AbstractResource.java created on Jul 20, 2018 3:45:42 PM by Lyon Lu 
  */
-package com.study.service.common;
+package com.study.server.common;
 
 import javax.servlet.http.HttpServletRequest;
 
