@@ -6,26 +6,22 @@
  */
 package com.study.server.test.api;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
+import javax.annotation.Resource;
 
-import org.apache.commons.io.IOUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.study.server.client.OutputClient;
 import com.study.server.common.AbstractResource;
 import com.study.server.jaxb.pojo.BaseRequest.Head;
-import com.study.server.jaxb.pojo.ItemRequestXml;
-import com.study.server.jaxb.pojo.ItemRequestXml.ItemRequest;
-import com.study.server.jaxb.pojo.ItemResponseXml;
-import com.study.server.jaxb.pojo.ItemResponseXml.Body;
-import com.study.server.jaxb.pojo.ItemResponseXml.ItemResponse;
+import com.study.server.jaxb.pojo.ItemQueryRequestBean;
+import com.study.server.jaxb.pojo.ItemQueryRequestBean.Body;
+import com.study.server.jaxb.pojo.ItemQueryRequestBean.ItemQueryRequest;
 import com.study.server.utils.JaxbUtil;
+import com.study.server.jaxb.pojo.ItemResponseBean;
 
 /**
  * <pre>
@@ -39,60 +35,41 @@ import com.study.server.utils.JaxbUtil;
 @RestController
 public class TestResource extends AbstractResource 
 {
-	
-	@RequestMapping(value = "test")
-	public String test()
-	{
-	    HttpServletRequest request = getRequest();
-	    try
-        {
-            ServletInputStream inputStream = request.getInputStream();
-            String string = IOUtils.toString(inputStream, "UTF-8");
-            System.out.println(string);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-		return "test";
-	}
-	
-	@RequestMapping(value = "xml", produces={"application/xml; charset=UTF-8"})
-	public ItemResponseXml xml(@RequestBody ItemRequestXml xml)
-	{
-	    System.out.println(xml);
-	    ItemRequest itemRequest = xml.getBody().getItemRequest();
-	    
-	    ItemResponse gr = new ItemResponse();
-	    gr.setCode(itemRequest.getCode());
-	    
-	    Body body = new Body();
-	    body.setItemResponse(gr);
-	    
-	    ItemResponseXml grx = new ItemResponseXml();
-	    grx.setService(xml.getService());
-	    grx.setLang(xml.getLang());
-	    grx.setHead("OK");
-	    grx.setBody(body);
-		return grx;
-	}
-	
-	@RequestMapping(value = "xmlJson")
-	public String xmlJson() throws IOException
-	{
-	    HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-	    
-	    ServletInputStream inputStream = request.getInputStream();
-	    String inputStr = IOUtils.toString(inputStream, "UTF-8");
-	    // xml转bean
-	    ItemRequestXml xml = JaxbUtil.converyToJavaBean(inputStr, ItemRequestXml.class);
-	    
-	    Head head = xml.getHead();
-	    head.setAccessCode("111111111111");
-	    // bean转xml
-	    String outputStr = JaxbUtil.convertToXml(xml);
-	    
-	    System.out.println(outputStr);
-	    return outputStr;
-	}
+    @Resource
+    private OutputClient outputClient;
+    
+    @RequestMapping(value = "output")
+    public ItemResponseBean output()
+    {
+        ItemQueryRequestBean xml = new ItemQueryRequestBean();
+        xml.setLang("zh-CN");
+        xml.setService("ITEM_QUERY_SERVICE");
+        
+        Head head = new Head();
+        head.setAccessCode("bvW2Fcx8Hb1OYzZaL2mY8A==");
+        head.setCheckword("Pa2zfPtcCIvmhxYkfw5Bj6JgPmx63s4i");
+        xml.setHead(head);
+        
+        ItemQueryRequest item = new ItemQueryRequest();
+        List<String> skuNoList = new ArrayList<>();
+        skuNoList.add("1");
+        item.setCompanyCode("COMMONCOMPANY");
+        item.setSkuNo(skuNoList);
+        
+        Body body = new Body();
+        body.setItemQueryRequest(item);
+        xml.setBody(body);
+        
+        String xmlStr = outputClient.output(xml);
+        
+        ItemResponseBean xmlBean = JaxbUtil.converyToJavaBean(xmlStr, ItemResponseBean.class);
+        
+        return xmlBean;
+    }
+    
+    @RequestMapping(value = "success")
+    public String success()
+    {
+        return "success";
+    }
 }
