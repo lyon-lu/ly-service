@@ -9,7 +9,8 @@ package com.study.server.client.fallback;
 import org.springframework.stereotype.Component;
 
 import com.study.server.client.OutputClient;
-import com.study.server.jaxb.pojo.ItemQueryRequestBean;
+import com.study.server.jaxb.pojo.ItemQueryRequestBean.ItemQueryRequest;
+import com.study.server.jaxb.pojo.ItemResponseBean.ItemResponse;
 
 /**
  * <pre>
@@ -25,7 +26,7 @@ import com.study.server.jaxb.pojo.ItemQueryRequestBean;
 public class OutputClientFallback extends AbstractFallback implements OutputClient
 {
     @Override
-    public String output(ItemQueryRequestBean xml)
+    public ItemResponse output(ItemQueryRequest query)
     {
         logger.error("output fallback");
         return null;

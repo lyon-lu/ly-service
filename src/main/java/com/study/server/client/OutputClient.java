@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.study.server.client.fallback.OutputClientFallback;
-import com.study.server.jaxb.pojo.ItemQueryRequestBean;
-import com.study.server.jaxb.pojo.ItemResponseBean;
+import com.study.server.jaxb.pojo.ItemQueryRequestBean.ItemQueryRequest;
+import com.study.server.jaxb.pojo.ItemResponseBean.ItemResponse;
 
 /**
  * <pre>
@@ -27,5 +27,5 @@ import com.study.server.jaxb.pojo.ItemResponseBean;
 public interface OutputClient
 {
     @RequestMapping(value = "output")
-    String output(@RequestBody ItemQueryRequestBean xml);
+    ItemResponse output(@RequestBody ItemQueryRequest query);
 }
