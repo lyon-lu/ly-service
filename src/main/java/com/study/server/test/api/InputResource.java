@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.study.server.common.AbstractResource;
-import com.study.server.jaxb.pojo.ItemQueryRequestBean;
 import com.study.server.jaxb.pojo.ItemQueryRequestBean.ItemQueryRequest;
-import com.study.server.jaxb.pojo.ItemResponseBean;
-import com.study.server.jaxb.pojo.ItemResponseBean.Body;
 import com.study.server.jaxb.pojo.ItemResponseBean.ItemResponse;
 
 /**
@@ -30,22 +27,11 @@ import com.study.server.jaxb.pojo.ItemResponseBean.ItemResponse;
 public class InputResource extends AbstractResource 
 {
     @RequestMapping(value = "input")
-    public ItemResponseBean input(@RequestBody ItemQueryRequestBean xml)
+    public ItemResponse input(@RequestBody ItemQueryRequest itemRequest)
     {
-        
-        ItemQueryRequest itemRequest = xml.getBody().getItemQueryRequest();
-        
-        ItemResponse gr = new ItemResponse();
-        
-        Body body = new Body();
-        body.setItemResponse(gr);
-        
-        ItemResponseBean grx = new ItemResponseBean();
-        grx.setService(xml.getService());
-        grx.setLang(xml.getLang());
-        grx.setHead("OK");
-        grx.setBody(body);
-        
-        return grx;
+        ItemResponse itemResponse = new ItemResponse();
+        itemResponse.setTotalSize(10);
+        itemResponse.setRemark("测试");
+        return itemResponse;
     }
 }
